@@ -1,7 +1,6 @@
 <?php
 
-    print_r($_POST);
-
+    
     class Mensagem{
 
     	public $para = null;
@@ -22,12 +21,42 @@
 
     	}
 
-
+        
     	public function mensagemValida(){
+          
+          if(empty($this->para) || empty($this->assunto) || empty($this->mensagem)){
 
-    		//
+          	return false;
+          	
+          }
+
+          return true;
+    		
     	}
+
+
     }
+
+    // criando um objeto com base na classe mensagem
+
+    $mensagem = new Mensagem();
+
+    // preenchendo os atributos usando o metodo set 
+
+    $mensagem -> __set('para',$_POST['para']);
+    $mensagem -> __set('assunto',$_POST['assunto']);
+    $mensagem -> __set('mensagem',$_POST['mensagem']);
+
+    if ($mensagem-> mensagemValida()) {
+    	
+    	echo "Mensagem é valida";
+
+    }else{
+
+    	echo "Mensagem não é valida";
+    }
+
+
 
 
 
