@@ -27,7 +27,8 @@
 
     	public function __get($atributo){
 
-    		return $this->atributo;
+    		return $this->$atributo;
+
 
     	}
 
@@ -65,10 +66,16 @@
     $mensagem -> __set('assunto',$_POST['assunto']);
     $mensagem -> __set('mensagem',$_POST['mensagem']);
 
+
+
     if (!$mensagem-> mensagemValida()) {
     	echo "Mensagem não é valida";
     	die();
     }
+
+ 
+
+
 
 
 
@@ -90,7 +97,11 @@ try {
 
     //Recipients
     $mail->setFrom('webcurso31@gmail.com', 'Curso remetente');
-    $mail->addAddress('webcurso31@gmail.com', 'Curso destinatario');     //Add a recipient
+    $mail->addAddress($mensagem->__get('para')); 
+
+
+
+        //Add a recipient
    // $mail->addReplyTo('info@example.com', 'Information');
    // $mail->addCC('cc@example.com');
    // $mail->addBCC('bcc@example.com');
@@ -101,15 +112,17 @@ try {
 
     //Content
     $mail->isHTML(true);                                  //Set email format to HTML
-    $mail->Subject = 'Oi eu sou o assunto'; // assunto
-    $mail->Body    = 'Oi Eu sou o conteudo do <strong>E-mail</strong> '; //conteudo
-    $mail->AltBody = 'Oi Eu sou o conteudo do E-mail';
+    $mail->Subject = $mensagem->__get('assunto'); // assunto
+    $mail->Body    = $mensagem->__get('mensagem'); //conteudo
+    $mail->AltBody = 'E necessario usar um client que suporte html para ver o conteudo total dessa mensagem';
 
     $mail->send();
-    echo 'Message has been sent';
+    echo 'E-mail enviado com sucesso';
 } catch (Exception $e) {
-    echo "Não foi possivel enviar este E-mail tente novamnte mais tarde.<br> Detalhes do erro: {$mail->ErrorInfo}";
+    echo "Não foi possivel enviar este E-mail tente novamente mais tarde.<br> Detalhes do erro: {$mail->ErrorInfo}";
 }
+
+
 
 
 
