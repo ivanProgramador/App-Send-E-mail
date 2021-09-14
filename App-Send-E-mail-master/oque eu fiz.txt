@@ -1,0 +1,13 @@
+1 - fui na pasta c:\xampp -> e criei umas pasta chamada app_send_mail
+2 - antes de recortar o arquivo eu fechei ele no sublime text
+3 - recortei o arquivo processa_envio.php de dentro da pasta  app_send_mail qu estava dentro do htdocs
+    e colei dentro da pasta  app_send_mail que esta dentro da pasta xampp
+
+4- criei um novo arquivo com o nome processa_envio.php mas esse arquivo vai ter somente requires
+   que vao apontar para o arquivo que esta fora da pasta pubica do servidor escondendo todo o processo 
+   que contem dados sigilosos
+
+
+rpojeto finalizado
+
+
